@@ -1,0 +1,9 @@
+name: "LeanIX secrets"
+description: "Setup secrets as environment variables"
+inputs:
+  secret-store-credentials:
+    description: "Credentials for the secret store"
+    required: true
+runs:
+  using: "node12"
+  main: "index.js"
