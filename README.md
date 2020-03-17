@@ -14,3 +14,7 @@ To populate the environment of your current Github Actions Workflow job with the
 ```
 
 The action will log the names of all environment variables it created, so that you know which secrets you can use.
+
+## Copyright and license
+
+Copyright 2020 LeanIX GmbH under the [Unlicense license](LICENSE).
