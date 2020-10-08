@@ -5,6 +5,7 @@ name: secrets
       - fix/env-warning
 jobs:
   main:
+    runs-on: ubuntu-latest
     steps:
       - name: Get credentials
         uses: leanix/secrets-action@fix/env-warning
