@@ -1,22 +1,21 @@
 name: secrets
-
-on:
+'on':
   repository_dispatch:
-    types: [trigger-impacts]
+    types:
+      - trigger-impacts
   push:
     branches:
       - fix/env-warning
     paths-ignore:
       - '**README.md'
-      - 'docs/**'
-      - 'loadtest/**'
-      - 'monitoring/**'
+      - docs/**
+      - loadtest/**
+      - monitoring/**
     tags-ignore:
       - ROLLBACK/*
-
 jobs:
   main:
     - name: Get credentials
-        uses: leanix/secrets-action@fix/env-warning
-        with:
-          secret-store-credentials: ${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}
+      uses: leanix/secrets-action@fix/env-warning
+      with:
+        secret-store-credentials: '${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}'
