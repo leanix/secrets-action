@@ -9,8 +9,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build index.js
-        run: ./update-dist.sh
+      - name: Install and build index.js
+        run: |
+          npm i -g @vercel/ncc
+          ncc build index.js
       - name: Commit dist/index.js
         run: |
           git add ./dist/index.js
