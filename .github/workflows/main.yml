@@ -1,0 +1,22 @@
+name: secrets
+
+on:
+  repository_dispatch:
+    types: [trigger-impacts]
+  push:
+    branches:
+      - fix/env-warning
+    paths-ignore:
+      - '**README.md'
+      - 'docs/**'
+      - 'loadtest/**'
+      - 'monitoring/**'
+    tags-ignore:
+      - ROLLBACK/*
+
+jobs:
+  main:
+    - name: Get credentials
+        uses: ${GITHUB_REF##*/}
+        with:
+          secret-store-credentials: ${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}
