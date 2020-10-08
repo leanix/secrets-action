@@ -12,7 +12,6 @@ jobs:
       - name: Build index.js
         run: ./update-dist.sh
       - name: Commit dist/index.js
-        uses: actions/checkout@v2
         run: |
           git add ./dist/index.js
           git commit -m "build index.js"
