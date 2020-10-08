@@ -17,6 +17,6 @@ on:
 jobs:
   main:
     - name: Get credentials
-        uses: ${GITHUB_REF##*/}
+        uses: leanix/secrets-action@${GITHUB_REF##*/}
         with:
           secret-store-credentials: ${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}
