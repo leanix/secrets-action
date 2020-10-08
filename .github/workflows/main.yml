@@ -7,7 +7,8 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - name: Get credentials
-        uses: leanix/secrets-action@fix/env-warning
-        with:
-          secret-store-credentials: '${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}'
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
