@@ -11,8 +11,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Install and build index.js
         run: |
-          npm i -g @vercel/ncc
-          ncc build index.js
+          npm run build
       - name: Commit dist/index.js
         run: |
           git config user.name ${{ github.actor }}
