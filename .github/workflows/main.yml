@@ -1,5 +1,5 @@
 name: secrets-action
-'on':
+"on":
   push:
     branches:
       - fix/env-warning
@@ -20,3 +20,7 @@ jobs:
           git add ./dist/index.js
           git commit -m "build index.js"
           git push
+      - name: Get credentials
+        uses: leanix/secrets-action@fix/env-warning
+        with:
+          secret-store-credentials: "${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}"
