@@ -14,8 +14,8 @@ jobs:
           npm i @vercel/ncc
           npx ncc build index.js
       - name: Commit dist/index.js
-      - uses: actions/checkout@v2
-      - run: |
+        uses: actions/checkout@v2
+        run: |
           git config user.name ${{ github.actor }}
           git config user.email '${{ github.actor }}@users.noreply.github.com'
           git add ./dist/index.js
