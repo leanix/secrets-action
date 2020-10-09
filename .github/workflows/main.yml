@@ -14,7 +14,10 @@ jobs:
           npm i @vercel/ncc
           npx ncc build index.js
       - name: Commit dist/index.js
-        run: |
-          git add ./dist/index.js
-          git commit -m "build index.js"
-          git push
+        - uses: actions/checkout@v2
+          with:
+            token: '${{ secrets.GITHUB_TOKEN }}'
+        - run: |
+            git add ./dist/index.js
+            git commit -m "build index.js"
+            git push
