@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx ncc build index.js"
+    "build": "npx @vercel/ncc build index.js"
   },
   "keywords": [],
   "author": "",
