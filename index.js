@@ -5,6 +5,8 @@ const { SecretClient } = require("@azure/keyvault-secrets");
 
 (async () => {
     try {
+        console.log("For testing reasons")
+        console.log("-----------------------------------")
         let buffer = Buffer.from(core.getInput('secret-store-credentials'), 'base64');
         const credentials = JSON.parse(buffer.toString());
         const keyvaultClient = new SecretClient(credentials.secretStoreAddress, new ClientSecretCredential(credentials.tenantId, credentials.clientId, credentials.clientSecret));
