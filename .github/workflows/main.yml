@@ -1,4 +1,4 @@
-name: secrets
+name: secrets-action
 'on':
   push:
     branches:
@@ -11,8 +11,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Install and build index.js
         run: |
-          npm i -g @vercel/ncc
-          ncc build index.js
+          npm i @vercel/ncc
+          npx ncc build index.js
       - name: Commit dist/index.js
         run: |
           git add ./dist/index.js
