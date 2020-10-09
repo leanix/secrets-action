@@ -2,16 +2,18 @@ module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 965:
+/***/ 138:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-const core = __webpack_require__(833);
-const { ClientSecretCredential } = __webpack_require__(102);
-const { SecretClient } = __webpack_require__(931);
+const core = __webpack_require__(466);
+const { ClientSecretCredential } = __webpack_require__(890);
+const { SecretClient } = __webpack_require__(307);
 
 
 (async () => {
     try {
+        console.log("For testing reasons")
+        console.log("-----------------------------------")
         let buffer = Buffer.from(core.getInput('secret-store-credentials'), 'base64');
         const credentials = JSON.parse(buffer.toString());
         const keyvaultClient = new SecretClient(credentials.secretStoreAddress, new ClientSecretCredential(credentials.tenantId, credentials.clientId, credentials.clientSecret));
@@ -32,7 +34,7 @@ const { SecretClient } = __webpack_require__(931);
 
 /***/ }),
 
-/***/ 833:
+/***/ 466:
 /***/ ((module) => {
 
 module.exports = eval("require")("@actions/core");
@@ -40,7 +42,7 @@ module.exports = eval("require")("@actions/core");
 
 /***/ }),
 
-/***/ 102:
+/***/ 890:
 /***/ ((module) => {
 
 module.exports = eval("require")("@azure/identity");
@@ -48,7 +50,7 @@ module.exports = eval("require")("@azure/identity");
 
 /***/ }),
 
-/***/ 931:
+/***/ 307:
 /***/ ((module) => {
 
 module.exports = eval("require")("@azure/keyvault-secrets");
@@ -94,6 +96,6 @@ module.exports = eval("require")("@azure/keyvault-secrets");
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(965);
+/******/ 	return __webpack_require__(138);
 /******/ })()
 ;
