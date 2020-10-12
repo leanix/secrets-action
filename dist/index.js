@@ -2,12 +2,12 @@ module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 158:
+/***/ 168:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-const core = __webpack_require__(675);
-const { ClientSecretCredential } = __webpack_require__(883);
-const { SecretClient } = __webpack_require__(309);
+const core = __webpack_require__(27);
+const { ClientSecretCredential } = __webpack_require__(438);
+const { SecretClient } = __webpack_require__(578);
 
 
 (async () => {
@@ -32,7 +32,7 @@ const { SecretClient } = __webpack_require__(309);
 
 /***/ }),
 
-/***/ 675:
+/***/ 27:
 /***/ ((module) => {
 
 module.exports = eval("require")("@actions/core");
@@ -40,7 +40,7 @@ module.exports = eval("require")("@actions/core");
 
 /***/ }),
 
-/***/ 883:
+/***/ 438:
 /***/ ((module) => {
 
 module.exports = eval("require")("@azure/identity");
@@ -48,7 +48,7 @@ module.exports = eval("require")("@azure/identity");
 
 /***/ }),
 
-/***/ 309:
+/***/ 578:
 /***/ ((module) => {
 
 module.exports = eval("require")("@azure/keyvault-secrets");
@@ -94,6 +94,6 @@ module.exports = eval("require")("@azure/keyvault-secrets");
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(158);
+/******/ 	return __webpack_require__(168);
 /******/ })()
 ;
