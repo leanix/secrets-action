@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx @vercel/ncc build index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,6 @@
     "@actions/github": "^2.1.1",
     "@azure/identity": "^1.0.2",
     "@azure/keyvault-secrets": "^4.0.2"
-  }
+  },
+  "private": "true"
 }

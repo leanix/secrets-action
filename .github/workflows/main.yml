@@ -1,0 +1,25 @@
+name: secrets-action
+"on":
+  push:
+    branches:
+      - master
+      - feature/*
+      - hotfix/*
+    paths-ignore:
+      - 'dist'
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install and build index.js
+        run: |
+          npm run build
+      - name: Commit dist/index.js
+        run: |
+          git config user.name ${{ github.actor }}
+          git config user.email '${{ github.actor }}@users.noreply.github.com'
+          git add ./dist/index.js
+          git commit -m "build index.js" ./dist/index.js
+          git push
