@@ -17,6 +17,8 @@ jobs:
           npm run build
       - name: Run secrets-action from repo
         uses: ./
+        with:
+          secret-store-credentials: ${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}
       - name: Commit dist/index.js
         run: |
           git config user.name ${{ github.actor }}
