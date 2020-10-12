@@ -2,7 +2,6 @@ name: secrets-action
 "on":
   push:
     branches:
-      - master
       - feature/*
       - hotfix/*
     paths-ignore:
