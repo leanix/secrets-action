@@ -9,9 +9,13 @@ const { SecretClient } = require("@azure/keyvault-secrets");
         const credentials = JSON.parse(buffer.toString());
         const keyvaultClient = new SecretClient(credentials.secretStoreAddress, new ClientSecretCredential(credentials.tenantId, credentials.clientId, credentials.clientSecret));
         console.log("Starting to look for secrets in secret-store", credentials.secretStoreAddress);
-        await Promise.all(keyvaultClient.listPropertiesOfSecrets().map(async (secretProperties) => {
+        var secrets = [];
+        for await (let secretProperties of keyvaultClient.listPropertiesOfSecrets()) {
             const secretName = secretProperties.name;
             console.log("Found secret", secretName);
+            secrets.push(secretName);
+        }
+        await Promise.all(secrets.map(async (secretName) => {
             return { secretName: secretName, latestSecret: await keyvaultClient.getSecret(secretName) };
         })).then((secretName, latestSecret) => {
             core.setSecret(latestSecret)
