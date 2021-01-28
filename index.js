@@ -19,7 +19,7 @@ const { SecretClient } = require("@azure/keyvault-secrets");
             return { secretName: secretName, latestSecret: await keyvaultClient.getSecret(secretName) };
         })).then((secretName, latestSecret) => {
             core.setSecret(latestSecret)
-            const secretEnvName = secretName.split(" ").join("_").split("-").join("_").toUpperCase()
+            const secretEnvName = secretName.toString().split(" ").join("_").split("-").join("_").toUpperCase()
             console.log("Setting environment variable", secretEnvName)
             core.exportVariable(secretEnvName, latestSecret);
         })
