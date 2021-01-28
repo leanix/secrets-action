@@ -9,20 +9,22 @@ const { SecretClient } = require("@azure/keyvault-secrets");
         const credentials = JSON.parse(buffer.toString());
         const keyvaultClient = new SecretClient(credentials.secretStoreAddress, new ClientSecretCredential(credentials.tenantId, credentials.clientId, credentials.clientSecret));
         console.log("Starting to look for secrets in secret-store", credentials.secretStoreAddress);
-        var secrets = [];
+        var secretNames = [];
         for await (let secretProperties of keyvaultClient.listPropertiesOfSecrets()) {
             const secretName = secretProperties.name;
             console.log("Found secret", secretName);
-            secrets.push(secretName);
+            secretNames.push(secretName);
         }
-        await Promise.all(secrets.map(async (secretName) => {
-            return { secretName: secretName, latestSecret: await keyvaultClient.getSecret(secretName) };
-        })).then((secretName, latestSecret) => {
-            core.setSecret(latestSecret)
-            const secretEnvName = secretName.toString().split(" ").join("_").split("-").join("_").toUpperCase()
+        const secrets = await Promise.all(secretNames.map(async (secretName) => {
+            const { value: latestSecret } = await keyvaultClient.getSecret(secretName);
+            return { name: secretName, secretValue: latestSecret };
+        }));
+        secrets.forEach((secret) => {
+            core.setSecret(secret.secretValue)
+            const secretEnvName = secret.name.split(" ").join("_").split("-").join("_").toUpperCase()
             console.log("Setting environment variable", secretEnvName)
-            core.exportVariable(secretEnvName, latestSecret);
-        })
+            core.exportVariable(secretEnvName, secret.secretValue);
+        });
     } catch (error) {
         core.setFailed(error.message);
     }
